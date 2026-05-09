@@ -1,4 +1,4 @@
-#[derive(Debug, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, serde::Serialize, serde::Deserialize, sqlx::FromRow)]
 pub struct Task {
     pub id: i64,
     pub title: String,
@@ -6,6 +6,7 @@ pub struct Task {
     pub created_at: String // ISO timestamp
 }
 
+#[derive(Debug, serde::Serialize, serde::Deserialize, sqlx::FromRow)]
 pub struct CreateTaskInput {
-    title: String
+    pub title: String
 }
