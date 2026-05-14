@@ -14,7 +14,7 @@ async fn main() {
     let app = Router::new()
         .route("/", get(|| async {"Hello"}))
         .route("/tasks", get(get_all_tasks).post(create_task))
-        // .route("/tasks/:id", get().put().delete())
+        .route("/tasks/{id}", get(get_one_task_byid).put(update_details_byid).delete(delete_task_byid))
         .with_state(pool)
         ;
 
