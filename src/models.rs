@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 #[derive(Debug, serde::Serialize, serde::Deserialize, sqlx::FromRow)]
 pub struct Task {
     pub id: i64,
@@ -9,4 +11,10 @@ pub struct Task {
 #[derive(Debug, serde::Serialize, serde::Deserialize, sqlx::FromRow)]
 pub struct CreateTaskInput {
     pub title: String
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct UpdateTaskInput {
+    pub title: String,
+    pub done: bool,
 }

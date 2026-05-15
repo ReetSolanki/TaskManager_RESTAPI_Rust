@@ -1,4 +1,8 @@
+use tower_http::services::ServeDir;
+use tower_http::cors::CorsLayer;
+
 use axum::{routing::get,Router};
+
 mod models;
 mod handlers;
 mod db;
@@ -12,9 +16,11 @@ async fn main() {
 
     // build our application with a single route
     let app = Router::new()
-        .route("/", get(|| async {"Hello"}))
+        // .route("/", get(|| async {"Hello"}))
         .route("/tasks", get(get_all_tasks).post(create_task))
         .route("/tasks/{id}", get(get_one_task_byid).put(update_details_byid).delete(delete_task_byid))
+        .fallback_service(ServeDir::new("static"))
+        .layer(CorsLayer::permissive())
         .with_state(pool)
         ;
 

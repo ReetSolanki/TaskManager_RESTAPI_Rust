@@ -2,7 +2,7 @@ use axum::{Json, debug_handler, extract::State};
 use axum::extract::{Path};
 use sqlx::{SqlitePool};
 
-use crate::models::{CreateTaskInput, Task};
+use crate::models::{CreateTaskInput, Task, UpdateTaskInput};
 
 #[debug_handler]
 pub async fn get_all_tasks(
@@ -86,7 +86,7 @@ pub async fn delete_task_byid(
 pub async fn update_details_byid(
     State(pool): State<SqlitePool>,
     Path(task_id): Path<i64>,
-    Json(task): Json<Task>
+    Json(task): Json<UpdateTaskInput>
 ) -> Json<Task> {
 
     sqlx::query(
