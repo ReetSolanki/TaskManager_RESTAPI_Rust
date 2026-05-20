@@ -1,4 +1,4 @@
-# ✅ Task Manager REST API
+# Task Manager REST API
 
 A full-stack task management app built in Rust — REST API backend with a vanilla JS frontend, persisted to SQLite.
 
